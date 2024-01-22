@@ -1,39 +1,79 @@
 package bevans.ztm.hashtable;
 
+import java.util.Arrays;
+
 public class HashTable {
-    private final Object[][] data;
+    private final Object[][][] data;
 
     HashTable(int size) {
-        this.data = new Object[size][];
+        this.data = new Object[size][][];
     }
 
     void set(String key, Object value) {
-        var bucketIndexHash = hash(key);
-        Object[] bucket = data[bucketIndexHash];
+        var address = hash(key);
+        Object[][] bucket = data[address];
 
         if (bucket == null) {
-            bucket = new Object[2];
-            data[bucketIndexHash] = bucket;
+            bucket = new Object[1][];
+            data[address] = bucket;
+        } else {
+            var keyIndex = getKeyIndex(key, bucket);
+
+            if (keyIndex > -1) {
+                bucket[keyIndex][1] = value;
+            } else {
+                bucket = createLargerBucket(bucket);
+                data[address] = bucket;
+            }
         }
 
-        bucket[0] = key;
-        bucket[1] = value;
+        var newEntry = new Object[2];
+        newEntry[0] = key;
+        newEntry[1] = value;
+        bucket[bucket.length - 1] = newEntry;
+    }
+
+    private int getKeyIndex(String key, Object[][] bucket) {
+        var keyIndex = -1;
+
+        for (int i = 0; i < bucket.length; i++) {
+            if (bucket[i][0] == key) {
+                keyIndex = i;
+                break;
+            }
+        }
+
+        return keyIndex;
+    }
+
+    private Object[][] createLargerBucket(Object[][] bucket) {
+        var largerBucket = new Object[bucket.length + 1][];
+
+        System.arraycopy(bucket, 0,
+                largerBucket, 0,
+                bucket.length);
+
+        return largerBucket;
     }
 
     Object get(String key) {
         Object value = null;
 
-        var bucketIndexHash = hash(key);
-        Object[] bucket = data[bucketIndexHash];
+        var address = hash(key);
+        Object[][] currentBucket = data[address];
 
-        if (bucket != null && (bucket[0] == key)) {
-            value = bucket[1];
+        if (currentBucket != null) {
+            for (int i = 0; i < currentBucket.length; i++) {
+                if (currentBucket[i][0] == key) {
+                    value = currentBucket[i][1];
+                }
+            }
         }
 
         return value;
     }
 
-    int hash(String key) {
+    private int hash(String key) {
         int hash = 0;
 
         for (int i = 0; i < key.length(); i++) {
@@ -42,5 +82,10 @@ public class HashTable {
         }
 
         return hash;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.deepToString(this.data);
     }
 }
