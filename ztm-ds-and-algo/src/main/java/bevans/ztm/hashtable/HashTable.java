@@ -88,10 +88,14 @@ public class HashTable {
     String[] keys() {
         var keySet = new HashSet<String>();
 
-        for (int i = 0; i < data.length; i++) {
-            if (data[i] != null) {
-                for (int j = 0; j < data[i].length; j++) {
-                    keySet.add(data[i][j][0].toString());
+        for (Object[][] currentBucket : data) {
+            if (currentBucket != null) {
+                if (currentBucket.length == 1) {
+                    keySet.add(currentBucket[0][0].toString());
+                } else {
+                    for (Object[] objects : currentBucket) {
+                        keySet.add(objects[0].toString());
+                    }
                 }
             }
         }
