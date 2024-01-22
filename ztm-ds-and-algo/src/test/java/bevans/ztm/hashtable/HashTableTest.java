@@ -73,4 +73,19 @@ class HashTableTest {
         var value = sut.get("Harry");
         assertThat(value).isEqualTo(000);
     }
+
+    @Test
+    void shouldGetKeys() {
+        // given
+        sut.set("grapes", 10_000);
+        sut.set("grapes2", 10_000);
+        sut.set("apples", 54);
+        sut.set("oranges", 2);
+
+        // when
+        var keys = sut.keys();
+
+        // then
+        assertThat(keys).contains("grapes", "grapes2", "apples", "oranges");
+    }
 }

@@ -1,6 +1,7 @@
 package bevans.ztm.hashtable;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class HashTable {
     private final Object[][][] data;
@@ -82,6 +83,20 @@ public class HashTable {
         }
 
         return hash;
+    }
+
+    String[] keys() {
+        var keySet = new HashSet<String>();
+
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] != null) {
+                for (int j = 0; j < data[i].length; j++) {
+                    keySet.add(data[i][j][0].toString());
+                }
+            }
+        }
+
+        return keySet.toArray(new String[0]);
     }
 
     @Override
