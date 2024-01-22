@@ -65,7 +65,7 @@ public class HashTable {
 
         if (currentBucket != null) {
             for (int i = 0; i < currentBucket.length; i++) {
-                if (currentBucket[i][0] == key) {
+                if (currentBucket[i][0].equals(key)) {
                     value = currentBucket[i][1];
                 }
             }
