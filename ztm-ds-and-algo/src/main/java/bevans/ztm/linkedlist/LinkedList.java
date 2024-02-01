@@ -44,6 +44,13 @@ public class LinkedList {
         }
     }
 
+    public void remove(int index) {
+        var leader = traverseToIndex(index - 1);
+        var holdingPointer = leader.next;
+        leader.next = holdingPointer.next;
+        length--;
+    }
+
     private Node traverseToIndex(int index) {
         var currentIndex = 0;
         var currentNode = head;

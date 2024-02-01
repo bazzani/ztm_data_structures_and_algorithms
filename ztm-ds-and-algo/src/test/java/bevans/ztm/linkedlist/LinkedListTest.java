@@ -73,4 +73,20 @@ class LinkedListTest {
         assertThat(sut.printList()).isEqualTo("[10,99]");
         System.out.println("sut = " + sut.printList());
     }
+
+    @Test
+    void shouldRemoveValue() {
+        // given
+        var sut = new LinkedList(10);
+        sut.append(5);
+        sut.append(16);
+
+        // when
+        sut.remove(1);
+
+        // then
+        assertThat(sut.length()).isEqualTo(2);
+        assertThat(sut.printList()).isEqualTo("[10,16]");
+        System.out.println("sut = " + sut.printList());
+    }
 }
