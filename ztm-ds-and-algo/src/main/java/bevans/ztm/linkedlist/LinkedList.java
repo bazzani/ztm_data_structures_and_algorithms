@@ -2,7 +2,6 @@ package bevans.ztm.linkedlist;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.w3c.dom.Node;
 
 import java.util.StringJoiner;
 
@@ -38,18 +37,23 @@ public class LinkedList {
         if (index >= length) {
             append(value);
         } else {
-            var currentIndex = 0;
-            var currentNode = head;
-
-            while (currentIndex <= index) {
-                if (currentIndex == index - 1) {
-                    currentNode.next = new Node(value, currentNode.next);
-                }
-
-                currentNode = currentNode.next;
-                currentIndex++;
-            }
+            var leader = traverseToIndex(index - 1);
+            var holdingPointer = leader.next;
+            leader.next = new Node(value, holdingPointer);
+            length++;
         }
+    }
+
+    private Node traverseToIndex(int index) {
+        var currentIndex = 0;
+        var currentNode = head;
+
+        while (currentIndex != index) {
+            currentNode = currentNode.next;
+            currentIndex++;
+        }
+
+        return currentNode;
     }
 
     @Override

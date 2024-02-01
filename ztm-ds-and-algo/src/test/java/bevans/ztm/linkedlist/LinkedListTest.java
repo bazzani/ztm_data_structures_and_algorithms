@@ -55,7 +55,9 @@ class LinkedListTest {
         sut.insert(2, 99);
 
         // then
+        assertThat(sut.length()).isEqualTo(4);
         assertThat(sut.printList()).isEqualTo("[10,5,99,16]");
+        System.out.println("sut = " + sut.printList());
     }
 
     @Test
@@ -67,6 +69,8 @@ class LinkedListTest {
         sut.insert(200, 99);
 
         // then
+        assertThat(sut.length()).isEqualTo(2);
         assertThat(sut.printList()).isEqualTo("[10,99]");
+        System.out.println("sut = " + sut.printList());
     }
 }
