@@ -57,4 +57,16 @@ class LinkedListTest {
         // then
         assertThat(sut.printList()).isEqualTo("[10,5,99,16]");
     }
+
+    @Test
+    void shouldInsertValueWithLargeIndex() {
+        // given
+        var sut = new LinkedList(10);
+
+        // when
+        sut.insert(200, 99);
+
+        // then
+        assertThat(sut.printList()).isEqualTo("[10,99]");
+    }
 }

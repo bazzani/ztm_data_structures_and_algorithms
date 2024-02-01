@@ -35,16 +35,20 @@ public class LinkedList {
     }
 
     public void insert(int index, Object value) {
-        var currentIndex = 0;
-        var currentNode = head;
+        if (index >= length) {
+            append(value);
+        } else {
+            var currentIndex = 0;
+            var currentNode = head;
 
-        while (currentIndex <= index) {
-            if (currentIndex == index - 1) {
-                currentNode.next = new Node(value, currentNode.next);
+            while (currentIndex <= index) {
+                if (currentIndex == index - 1) {
+                    currentNode.next = new Node(value, currentNode.next);
+                }
+
+                currentNode = currentNode.next;
+                currentIndex++;
             }
-
-            currentNode = currentNode.next;
-            currentIndex++;
         }
     }
 
