@@ -20,7 +20,7 @@ public class LinkedList {
 
     public void append(Object value) {
         var newNode = new Node(value, null);
-        head.next = newNode;
+        tail.next = newNode;
         tail = newNode;
         length++;
     }
