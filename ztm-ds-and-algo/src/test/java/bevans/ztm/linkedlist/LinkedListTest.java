@@ -41,6 +41,20 @@ class LinkedListTest {
         // then
         assertThat(sut.length()).isEqualTo(2);
 
-        System.out.println("sut = " + sut);
+        System.out.println("sut = " + sut.printList());
+    }
+
+    @Test
+    void shouldInsertValue() {
+        // given
+        var sut = new LinkedList(10);
+        sut.append(5);
+        sut.append(16);
+
+        // when
+        sut.insert(2, 99);
+
+        // then
+        assertThat(sut.printList()).isEqualTo("[10,5,99,16]");
     }
 }

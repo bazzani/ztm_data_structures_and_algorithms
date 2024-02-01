@@ -2,6 +2,9 @@ package bevans.ztm.linkedlist;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.w3c.dom.Node;
+
+import java.util.StringJoiner;
 
 public class LinkedList {
     private Node head;
@@ -31,9 +34,33 @@ public class LinkedList {
         length++;
     }
 
+    public void insert(int index, Object value) {
+        var currentIndex = 0;
+        var currentNode = head;
+
+        while (currentIndex <= index) {
+            if (currentIndex == index - 1) {
+                currentNode.next = new Node(value, currentNode.next);
+            }
+
+            currentNode = currentNode.next;
+            currentIndex++;
+        }
+    }
+
     @Override
     public String toString() {
         return new ReflectionToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).toString();
+    }
+
+    String printList() {
+        var joiner = new StringJoiner(",", "[", "]");
+        var currentNode = this.head;
+        while (currentNode != null) {
+            joiner.add(currentNode.value.toString());
+            currentNode = currentNode.next;
+        }
+        return joiner.toString();
     }
 
     private class Node {
