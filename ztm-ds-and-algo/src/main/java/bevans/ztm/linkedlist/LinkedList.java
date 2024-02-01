@@ -46,8 +46,8 @@ public class LinkedList {
 
     public void remove(int index) {
         var leader = traverseToIndex(index - 1);
-        var holdingPointer = leader.next;
-        leader.next = holdingPointer.next;
+        var unwantedNode = leader.next;
+        leader.next = unwantedNode.next;
         length--;
     }
 
