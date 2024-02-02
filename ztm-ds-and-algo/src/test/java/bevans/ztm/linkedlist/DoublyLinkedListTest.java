@@ -17,15 +17,17 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    void shouldAppendValue() {
+    void shouldAppendValues() {
         // given
         var sut = new DoublyLinkedList(10);
 
         // when
         sut.append(5);
+        sut.append(16);
 
         // then
-        assertThat(sut.length()).isEqualTo(2);
+        assertThat(sut.length()).isEqualTo(3);
+        System.out.println("sut.printList() = " + sut.printList());
         System.out.println("sut = " + sut);
     }
 

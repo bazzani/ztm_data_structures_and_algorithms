@@ -21,7 +21,7 @@ public class DoublyLinkedList {
     }
 
     public void append(Object value) {
-        var newNode = new Node(value, null, head);
+        var newNode = new Node(value, null, tail);
         tail.next = newNode;
         tail = newNode;
         length++;
