@@ -40,17 +40,20 @@ public class DoublyLinkedList {
             prepend(value);
         } else {
             var leader = traverseToIndex(index - 1);
-            var holdingPointer = leader.next;
-            leader.next = new Node(value, holdingPointer, leader);
+            var follower = leader.next;
+
+            var newNode = new Node(value, follower, leader);
+            leader.next = newNode;
+            follower.previous = newNode;
             length++;
         }
     }
 
     public void remove(int index) {
         var leader = traverseToIndex(index - 1);
-        var nextNode = leader.next.next;
-        leader.next = nextNode;
-        nextNode.previous = leader;
+        var follower = leader.next.next;
+        leader.next = follower;
+        follower.previous = leader;
         length--;
     }
 
