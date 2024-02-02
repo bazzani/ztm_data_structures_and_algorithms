@@ -61,6 +61,20 @@ class LinkedListTest {
     }
 
     @Test
+    void shouldInsertValueAtTheHead() {
+        // given
+        var sut = new LinkedList(10);
+
+        // when
+        sut.insert(0, 99);
+
+        // then
+        assertThat(sut.length()).isEqualTo(2);
+        assertThat(sut.printList()).isEqualTo("[99,10]");
+        System.out.println("sut = " + sut.printList());
+    }
+
+    @Test
     void shouldInsertValueWithLargeIndex() {
         // given
         var sut = new LinkedList(10);

@@ -36,6 +36,8 @@ public class LinkedList {
     public void insert(int index, Object value) {
         if (index >= length) {
             append(value);
+        } else if (index == 0) {
+            prepend(value);
         } else {
             var leader = traverseToIndex(index - 1);
             var holdingPointer = leader.next;
