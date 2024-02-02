@@ -11,7 +11,7 @@ public class DoublyLinkedList {
     private int length;
 
     public DoublyLinkedList(Object value) {
-        this.head = new Node(value, null);
+        this.head = new Node(value, null, null);
         this.tail = head;
         this.length = 1;
     }
@@ -21,14 +21,14 @@ public class DoublyLinkedList {
     }
 
     public void append(Object value) {
-        var newNode = new Node(value, null);
+        var newNode = new Node(value, null, head);
         tail.next = newNode;
         tail = newNode;
         length++;
     }
 
     public void prepend(Object value) {
-        var newNode = new Node(value, head);
+        var newNode = new Node(value, head, null);
         head = newNode;
         length++;
     }
@@ -41,15 +41,16 @@ public class DoublyLinkedList {
         } else {
             var leader = traverseToIndex(index - 1);
             var holdingPointer = leader.next;
-            leader.next = new Node(value, holdingPointer);
+            leader.next = new Node(value, holdingPointer, leader);
             length++;
         }
     }
 
     public void remove(int index) {
         var leader = traverseToIndex(index - 1);
-        var unwantedNode = leader.next;
-        leader.next = unwantedNode.next;
+        var nextNode = leader.next.next;
+        leader.next = nextNode;
+        nextNode.previous = leader;
         length--;
     }
 
@@ -80,13 +81,15 @@ public class DoublyLinkedList {
         return joiner.toString();
     }
 
-    private class Node {
+    private static class Node {
         Object value;
         Node next;
+        Node previous;
 
-        public Node(Object value, Node next) {
+        public Node(Object value, Node next, Node previous) {
             this.value = value;
             this.next = next;
+            this.previous = previous;
         }
 
         @Override
