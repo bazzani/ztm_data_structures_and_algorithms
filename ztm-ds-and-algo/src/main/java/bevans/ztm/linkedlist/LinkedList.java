@@ -2,6 +2,7 @@ package bevans.ztm.linkedlist;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.w3c.dom.Node;
 
 import java.util.StringJoiner;
 
@@ -137,6 +138,25 @@ public class LinkedList {
             second = temp;
         }
 
+        this.head.next = null;
+        this.head = first;
+    }
+
+    public void reverseBarryTwo() {
+        if (this.head.next == null) {
+            return;
+        }
+
+        var first = this.head;
+        this.tail = first;
+        var second = first.next;
+
+        while (second != null) {
+            var temp = second.next;
+            second.next = first;
+            first = second;
+            second = temp;
+        }
         this.head.next = null;
         this.head = first;
     }

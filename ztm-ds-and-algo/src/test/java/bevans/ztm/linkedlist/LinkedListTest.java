@@ -191,4 +191,26 @@ class LinkedListTest {
         assertThat(sut.printList()).isEqualTo("[8,16,5,10]");
         System.out.println("reversed.printList() = " + sut.printList());
     }
+
+    @Test
+    void shouldReverseBarryTwo() {
+        // given
+        var sut = new LinkedList(10);
+        sut.append(5);
+        sut.append(16);
+        sut.append(8);
+
+        // when
+        sut.reverseBarryTwo();
+
+        // then
+        assertThat(sut.printList()).isEqualTo("[8,16,5,10]");
+        System.out.println("reversed.printList() = " + sut.printList());
+
+        sut.reverseBarryTwo();
+        assertThat(sut.printList()).isEqualTo("[10,5,16,8]");
+
+        sut.reverseBarryTwo();
+        assertThat(sut.printList()).isEqualTo("[8,16,5,10]");
+    }
 }
