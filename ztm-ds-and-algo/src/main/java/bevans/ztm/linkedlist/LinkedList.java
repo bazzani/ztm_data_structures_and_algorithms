@@ -127,7 +127,7 @@ public class LinkedList {
         }
 
         var first = this.head;
-        var tail = this.head;
+        this.tail = this.head;
         var second = first.next;
 
         while (second != null) {
