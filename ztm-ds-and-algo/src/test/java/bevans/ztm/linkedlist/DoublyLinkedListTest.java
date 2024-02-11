@@ -105,4 +105,20 @@ class DoublyLinkedListTest {
         assertThat(sut.printList()).isEqualTo("[10,16]");
         System.out.println("sut = " + sut.printList());
     }
+
+    @Test
+    void shouldRemoveLastValue() {
+        // given
+        var sut = new DoublyLinkedList(10);
+        sut.append(5);
+        sut.append(16);
+
+        // when
+        sut.remove(2);
+
+        // then
+        assertThat(sut.length()).isEqualTo(2);
+        assertThat(sut.printList()).isEqualTo("[10,16]");
+        System.out.println("sut = " + sut.printList());
+    }
 }
