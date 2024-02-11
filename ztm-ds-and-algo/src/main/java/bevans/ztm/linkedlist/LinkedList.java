@@ -99,6 +99,28 @@ public class LinkedList {
         }
     }
 
+    public LinkedList reverseZtm() {
+        if (this.head.next == null) {
+            return this;
+        }
+
+        var first = this.head;
+        this.tail = this.head;
+        var second = first.next;
+
+        while (second != null) {
+            var temp = second.next;
+            second.next = first;
+            first = second;
+            second = temp;
+        }
+
+        this.head.next = null;
+        this.head = first;
+
+        return this;
+    }
+
     private static class Node {
         Object value;
         Node next;

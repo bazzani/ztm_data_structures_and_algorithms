@@ -160,4 +160,19 @@ class LinkedListTest {
         assertThat(reversed.printList()).isEqualTo("[10]");
         System.out.println("reversed.printList() = " + reversed.printList());
     }
+
+    @Test
+    void shouldReverseZtm() {
+        // given
+        var sut = new LinkedList(10);
+        sut.append(5);
+        sut.append(16);
+
+        // when
+        var reversed = sut.reverseZtm();
+
+        // then
+        assertThat(reversed.printList()).isEqualTo("[16,5,10]");
+        System.out.println("reversed.printList() = " + reversed.printList());
+    }
 }
