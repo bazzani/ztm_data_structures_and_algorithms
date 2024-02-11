@@ -121,6 +121,26 @@ public class LinkedList {
         return this;
     }
 
+    public void reverseBarry() {
+        if (this.head.next == null) {
+            return;
+        }
+
+        var first = this.head;
+        var tail = this.head;
+        var second = first.next;
+
+        while (second != null) {
+            var temp = second.next;
+            second.next = first;
+            first = second;
+            second = temp;
+        }
+
+        this.head.next = null;
+        this.head = first;
+    }
+
     private static class Node {
         Object value;
         Node next;
