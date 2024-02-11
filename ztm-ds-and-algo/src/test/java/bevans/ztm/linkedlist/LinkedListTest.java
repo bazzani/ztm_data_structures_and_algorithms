@@ -119,4 +119,45 @@ class LinkedListTest {
         assertThat(sut.printList()).isEqualTo("[10,5]");
         System.out.println("sut = " + sut.printList());
     }
+
+    @Test
+    void shouldReverseLinkedList() {
+        // given
+        var sut = new LinkedList(10);
+        sut.append(5);
+        sut.append(16);
+
+        // when
+        var reversed = sut.reverse();
+
+        // then
+        assertThat(reversed.printList()).isEqualTo("[16,5,10]");
+        System.out.println("reversed.printList() = " + reversed.printList());
+    }
+
+    @Test
+    void shouldReverseEmptyLinkedList() {
+        // given
+        var sut = new LinkedList();
+
+        // when
+        var reversed = sut.reverse();
+
+        // then
+        assertThat(reversed.printList()).isEqualTo("[]");
+        System.out.println("reversed.printList() = " + reversed.printList());
+    }
+
+    @Test
+    void shouldReverseSingleValueLinkedList() {
+        // given
+        var sut = new LinkedList(10);
+
+        // when
+        var reversed = sut.reverse();
+
+        // then
+        assertThat(reversed.printList()).isEqualTo("[10]");
+        System.out.println("reversed.printList() = " + reversed.printList());
+    }
 }

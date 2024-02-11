@@ -10,6 +10,9 @@ public class LinkedList {
     private Node tail;
     private int length;
 
+    public LinkedList() {
+    }
+
     public LinkedList(Object value) {
         this.head = new Node(value, null);
         this.tail = head;
@@ -80,7 +83,23 @@ public class LinkedList {
         return joiner.toString();
     }
 
-    private class Node {
+    public LinkedList reverse() {
+        if (this.length > 0) {
+            var currentHead = this.head;
+            var reversed = new LinkedList(currentHead.value);
+
+            while (currentHead.next != null) {
+                reversed.prepend(currentHead.next.value);
+                currentHead = currentHead.next;
+            }
+
+            return reversed;
+        } else {
+            return new LinkedList();
+        }
+    }
+
+    private static class Node {
         Object value;
         Node next;
 
