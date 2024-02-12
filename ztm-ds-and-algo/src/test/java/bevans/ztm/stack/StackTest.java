@@ -1,5 +1,6 @@
 package bevans.ztm.stack;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,9 +34,11 @@ class StackTest {
         // given
         // when
         sut.push("google");
+        sut.push("Udemy");
 
         // then
         assertThat(sut.isEmpty()).isFalse();
+        assertThat(sut.peek()).isEqualTo("Udemy");
         System.out.println("stack = " + sut.printStack());
     }
 

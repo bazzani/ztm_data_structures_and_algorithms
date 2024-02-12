@@ -1,5 +1,7 @@
 package bevans.ztm.stack;
 
+import org.w3c.dom.Node;
+
 import java.util.StringJoiner;
 
 public class Stack {
@@ -17,23 +19,29 @@ public class Stack {
     }
 
     public void push(Object value) {
-        top = new Node(value, top);
-
         if (length == 0) {
-            bottom = top;
+            var newNode = new Node(value, null);
+            top = newNode;
+            bottom = newNode;
+        } else {
+            var newNode = new Node(value, top);
+            top = newNode;
         }
-
         length++;
     }
 
     public Object pop() {
+        if (top == null) {
+            return null;
+        }
+
+        if (top == bottom) {
+            bottom = null;
+        }
+
         var popped = top.value;
         top = top.next;
         length--;
-
-        if (length == 0) {
-            bottom = null;
-        }
 
         return popped;
     }
