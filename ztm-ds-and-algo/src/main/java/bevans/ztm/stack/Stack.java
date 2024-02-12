@@ -1,7 +1,5 @@
 package bevans.ztm.stack;
 
-import org.w3c.dom.Node;
-
 import java.util.StringJoiner;
 
 public class Stack {
