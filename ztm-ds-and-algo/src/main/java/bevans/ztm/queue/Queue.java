@@ -8,7 +8,11 @@ public class Queue {
     private int length;
 
     public Object peek() {
-        return null;
+        if (length == 0) {
+            return null;
+        } else {
+            return first.value;
+        }
     }
 
     public boolean isEmpty() {
@@ -16,10 +20,34 @@ public class Queue {
     }
 
     public void enqueue(String value) {
+        var newNode = new Node(value);
+
+        if (length == 0) {
+            first = newNode;
+            last = newNode;
+        } else {
+            last.next = newNode;
+            last = newNode;
+        }
+
+        length++;
     }
 
     public Object dequeue() {
-        return null;
+        if (first == null) {
+            return null;
+        }
+
+        var dequeued = first;
+        first = first.next;
+
+        if (first == null) {
+            last = null;
+        }
+
+        length--;
+
+        return dequeued.value;
     }
 
     public String printQueue() {
