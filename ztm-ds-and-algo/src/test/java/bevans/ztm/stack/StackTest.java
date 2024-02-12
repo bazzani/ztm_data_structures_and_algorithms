@@ -30,6 +30,17 @@ class StackTest {
     }
 
     @Test
+    void shouldPeekEmptyStack() {
+        // given
+        // when
+        var peeked = sut.peek();
+
+        // then
+        assertThat(peeked).isNull();
+        System.out.println("stack = " + sut.printStack());
+    }
+
+    @Test
     void shouldPush() {
         // given
         // when
