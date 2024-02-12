@@ -37,14 +37,12 @@ public class Queue {
         if (first == null) {
             return null;
         }
-
-        var dequeued = first;
-        first = first.next;
-
-        if (first == null) {
+        if (first == last) {
             last = null;
         }
 
+        var dequeued = first;
+        first = first.next;
         length--;
 
         return dequeued.value;
