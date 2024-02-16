@@ -3,7 +3,6 @@ package bevans.ztm.tree;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.w3c.dom.Node;
 
 public class BinarySearchTree {
     Node root;
@@ -18,24 +17,21 @@ public class BinarySearchTree {
         if (root == null) {
             root = newNode;
         } else {
-
             var currentNode = root;
 
-            while (currentNode != null) {
+            while (true) {
                 if (newNode.value < currentNode.value) {
                     if (currentNode.left == null) {
                         currentNode.left = newNode;
-                        currentNode = null;
-                    } else {
-                        currentNode = currentNode.left;
+                        return;
                     }
+                    currentNode = currentNode.left;
                 } else {
                     if (currentNode.right == null) {
                         currentNode.right = newNode;
-                        currentNode = null;
-                    } else {
-                        currentNode = currentNode.right;
+                        return;
                     }
+                    currentNode = currentNode.right;
                 }
             }
         }
