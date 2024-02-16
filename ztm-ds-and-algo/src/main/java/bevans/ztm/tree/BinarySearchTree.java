@@ -40,19 +40,21 @@ public class BinarySearchTree {
     Node lookup(int value) {
         if (root == null) {
             return null;
-        } else {
-            var currentNode = root;
+        }
 
-            while (currentNode != null) {
-                if (currentNode.value == value) {
-                    return currentNode;
-                }
-                if (value < currentNode.value) {
-                    currentNode = currentNode.left;
-                } else {
-                    currentNode = currentNode.right;
-                }
+        var currentNode = root;
+        while (currentNode != null) {
+            if (value < currentNode.value) {
+                currentNode = currentNode.left;
+            } else if (value > currentNode.value) {
+                currentNode = currentNode.right;
+            } else if (value == currentNode.value) {
+                return currentNode;
             }
+        }
+
+        return null;
+    }
 
             return null;
         }
