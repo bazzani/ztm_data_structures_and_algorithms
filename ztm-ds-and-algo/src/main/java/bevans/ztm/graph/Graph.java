@@ -1,8 +1,6 @@
 package bevans.ztm.graph;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Graph {
     private int numberOfNodes;
@@ -23,16 +21,24 @@ public class Graph {
 
     public String showConnections() {
         var allNodes = adjacentList.keySet();
-        var connections = new StringBuilder();
+        var allConnections = new StringJoiner("\n");
 
         for (var node : allNodes) {
+            StringBuilder connections = new StringBuilder();
+            connections
+                    .append(node)
+                    .append("-->");
+
             var nodeConnections = adjacentList.get(node);
             for (var vertex : nodeConnections) {
-                connections.append(vertex).append(" ");
+                connections
+                        .append(vertex)
+                        .append(" ");
             }
-            connections.append("\n");
+
+            allConnections.add(connections.toString());
         }
 
-        return connections.toString();
+        return allConnections.toString();
     }
 }
