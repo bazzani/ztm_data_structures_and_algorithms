@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class QueueTest {
+class QueueWithStacksTest {
 
-    private Queue sut;
+    private QueueWithStacks sut;
 
     @BeforeEach
     void setUp() {
-        sut = new Queue();
+        sut = new QueueWithStacks();
     }
 
     @Test
