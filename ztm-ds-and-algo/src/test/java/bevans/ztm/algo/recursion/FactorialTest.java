@@ -31,7 +31,27 @@ class FactorialTest {
         var factorial = sut.factorialRecursive(0);
 
         // then
-        assertThat(factorial).isZero();
+        assertThat(factorial).isEqualTo(1);
+    }
+
+    @Test
+    void shouldSolveFactorialRecursive_one() {
+        // given
+        // when
+        var factorial = sut.factorialRecursive(1);
+
+        // then
+        assertThat(factorial).isOne();
+    }
+
+    @Test
+    void shouldSolveFactorialRecursive_two() {
+        // given
+        // when
+        var factorial = sut.factorialRecursive(2);
+
+        // then
+        assertThat(factorial).isEqualTo(2);
     }
 
     @Test
@@ -51,6 +71,26 @@ class FactorialTest {
         var factorial = sut.factorialIterative(0);
 
         // then
-        assertThat(factorial).isZero();
+        assertThat(factorial).isEqualTo(1);
+    }
+
+    @Test
+    void shouldSolveFactorialIterative_one() {
+        // given
+        // when
+        var factorial = sut.factorialIterative(1);
+
+        // then
+        assertThat(factorial).isEqualTo(1);
+    }
+
+    @Test
+    void shouldSolveFactorialIterative_two() {
+        // given
+        // when
+        var factorial = sut.factorialIterative(2);
+
+        // then
+        assertThat(factorial).isEqualTo(2);
     }
 }
