@@ -23,4 +23,14 @@ class ReverseStringRecursionTest {
         // then
         assertThat(yoyoMaster).isEqualTo("retsam oyoy");
     }
+
+    @Test
+    void shouldReverseStringRecursive_emptyString() {
+        // given
+        // when
+        var reversed = sut.reverseStringRecursive("");
+
+        // then
+        assertThat(reversed).isEmpty();
+    }
 }

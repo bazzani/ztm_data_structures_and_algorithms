@@ -2,10 +2,10 @@ package bevans.ztm.algo.recursion;
 
 public class ReverseStringRecursion {
     String reverseStringRecursive(String str) {
-        if (str.length() == 1) {
-            return str;
+        if (str.isEmpty()) {
+            return "";
         }
 
-        return str.charAt(str.length() - 1) + reverseStringRecursive(str.substring(0, str.length() - 1));
+        return reverseStringRecursive(str.substring(1)) + str.charAt(0);
     }
 }
