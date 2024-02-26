@@ -11,20 +11,18 @@ public class SelectionSort {
         System.out.println("array = " + Arrays.toString(array));
 
         for (int i = 0; i < arrayLength; i++) {
-            var smallest = array[i];
-            var smallestIndex = i;
+            var min = i;
+            var temp = array[i];
 
-            for (int j = i; j < arrayLength; j++) {
-                if (array[j] < smallest) {
-                    smallest = array[j];
-                    smallestIndex = j;
+            for (int j = i + 1; j < arrayLength; j++) {
+                if (array[j] < array[min]) {
+                    min = j;
                     SWAP_COUNT++;
                 }
             }
 
-            var temp = array[i];
-            array[i] = smallest;
-            array[smallestIndex] = temp;
+            array[i] = array[min];
+            array[min] = temp;
 
             System.out.println("array = " + Arrays.toString(array));
         }
