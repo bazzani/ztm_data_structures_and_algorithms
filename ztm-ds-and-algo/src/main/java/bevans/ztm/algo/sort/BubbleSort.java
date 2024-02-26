@@ -7,13 +7,13 @@ public class BubbleSort {
         var arrayLength = array.length;
 
         for (int i = 0; i < arrayLength; i++) {
-            for (int j = 0; j < arrayLength; j++) {
-                var temp = array[i];
-
-                if (array[i] < array[j]) {
+            for (int j = 0; j < arrayLength - 1; j++) {
+                if (array[j] > array[j + 1]) {
                     SWAP_COUNT++;
-                    array[i] = array[j];
-                    array[j] = temp;
+
+                    var temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                 }
             }
         }
