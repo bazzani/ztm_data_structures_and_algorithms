@@ -1,23 +1,33 @@
 // #1 - Sort 10 schools around your house by distance:
 Insertion Sort
+    - O(1) space complexity
 
 // #2 - eBay sorts listings by the current Bid amount:
 Radix/Counting
+    - Integer, 1 : 50,000 USD
 
 // #3 - Sport scores on ESPN:
-Merge Sort
+Quick Sort
+    - O(n) space complexity
 
 // #4 - Massive database (can't fit all into memory) needs to sort through past year's user data:
 Merge Sort
+    - O(n log n) time complexity
 
 // #5 - Almost sorted Udemy review data needs to update and add 2 new reviews:
-Quick Sort
+Insertion Sort
 
 // #6 - Temperature Records for the past 50 years in Canada:
 Radix/Counting
+    - Works well for integers
+Quick Sort
+    - in-memory sorting for decimals
 
 // #7 - Large user name database needs to be sorted. Data is very random:
 Quick Sort
+    - not worried about worst case and not that large data set
+Merge Sort
+    - with enough memory available
 
 // #8 - You want to teach sorting for the first time:
 Bubble Sort
