@@ -2,10 +2,10 @@
 BFS
 
 //If the tree is very deep and solutions are rare:
-DFS
+BFS (DFS will take a long time to get to leaf node)
 
 //If the tree is very wide:
-BFS
+DFS (BFS will need too much memory)
 
 //If solutions are frequent but located deep in the tree:
 DFS
@@ -14,4 +14,4 @@ DFS
 DFS
 
 //Finding the shortest path:
-DFS
+BFS
