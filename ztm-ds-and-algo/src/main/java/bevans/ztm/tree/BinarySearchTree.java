@@ -156,9 +156,7 @@ public class BinarySearchTree {
             }
         }
 
-        return result.stream()
-                .mapToInt(Integer::intValue)
-                .toArray();
+        return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
     int[] breadthFirstSearchR() {
@@ -171,9 +169,7 @@ public class BinarySearchTree {
 
     private int[] breadthFirstSearchR(Queue<Node> queue, List<Integer> results) {
         if (queue.isEmpty()) {
-            return results.stream()
-                    .mapToInt(Integer::intValue)
-                    .toArray();
+            return results.stream().mapToInt(Integer::intValue).toArray();
         }
 
         var currentNode = queue.poll();
@@ -192,10 +188,7 @@ public class BinarySearchTree {
     int[] depthFirstSearchInOrder() {
         var result = new ArrayList<Integer>();
 
-        return dfsInOrder(root, result)
-                .stream()
-                .mapToInt(Integer::intValue)
-                .toArray();
+        return dfsInOrder(root, result).stream().mapToInt(Integer::intValue).toArray();
     }
 
     private List<Integer> dfsInOrder(Node currentNode, List<Integer> result) {
@@ -215,10 +208,7 @@ public class BinarySearchTree {
     int[] depthFirstSearchPreOrder() {
         var result = new ArrayList<Integer>();
 
-        return dfsPreOrder(root, result)
-                .stream()
-                .mapToInt(Integer::intValue)
-                .toArray();
+        return dfsPreOrder(root, result).stream().mapToInt(Integer::intValue).toArray();
     }
 
     private List<Integer> dfsPreOrder(Node currentNode, List<Integer> result) {
@@ -230,6 +220,25 @@ public class BinarySearchTree {
         if (currentNode.right != null) {
             dfsPreOrder(currentNode.right, result);
         }
+
+        return result;
+    }
+
+    int[] depthFirstSearchPostOrder() {
+        var result = new ArrayList<Integer>();
+
+        return dfsPostOrder(root, result).stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    private List<Integer> dfsPostOrder(Node currentNode, List<Integer> result) {
+        if (currentNode.left != null) {
+            dfsPostOrder(currentNode.left, result);
+        }
+        if (currentNode.right != null) {
+            dfsPostOrder(currentNode.right, result);
+        }
+
+        result.add(currentNode.value);
 
         return result;
     }
