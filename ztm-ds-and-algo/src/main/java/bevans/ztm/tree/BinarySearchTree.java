@@ -3,7 +3,10 @@ package bevans.ztm.tree;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.w3c.dom.Node;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Queue;
 
 public class BinarySearchTree {
     Node root;
@@ -132,6 +135,29 @@ public class BinarySearchTree {
         }
 
         return null;
+    }
+
+    int[] breadthFirstSearch() {
+        var result = new ArrayList<Integer>();
+
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            var currentNode = queue.poll();
+
+            result.add(currentNode.value);
+            if (currentNode.left != null) {
+                queue.add(currentNode.left);
+            }
+            if (currentNode.right != null) {
+                queue.add(currentNode.right);
+            }
+        }
+
+        return result.stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
     }
 
     Node traverse(Node node) {

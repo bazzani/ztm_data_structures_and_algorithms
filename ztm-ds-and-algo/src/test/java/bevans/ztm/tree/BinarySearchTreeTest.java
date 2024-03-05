@@ -5,6 +5,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BinarySearchTreeTest {
@@ -141,5 +143,26 @@ class BinarySearchTreeTest {
 
         // then
         assertThat(removed).isNull();
+    }
+
+    @Test
+    void shouldPerformBreadthFirstSearch() {
+        // given
+        //        9
+        //   4          20
+        // 1   6     15    170
+        sut.insert(9);
+        sut.insert(4);
+        sut.insert(6);
+        sut.insert(20);
+        sut.insert(170);
+        sut.insert(15);
+        sut.insert(1);
+
+        // when
+        int[] bfsResult = sut.breadthFirstSearch();
+
+        // then
+        assertThat(Arrays.toString(bfsResult)).isEqualTo("[9, 4, 20, 1, 6, 15, 170]");
     }
 }
