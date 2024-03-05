@@ -189,6 +189,29 @@ public class BinarySearchTree {
         return breadthFirstSearchR(queue, results);
     }
 
+    int[] depthFirstSearchInOrder() {
+        var result = new ArrayList<Integer>();
+
+        return dfsInOrder(root, result)
+                .stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
+    }
+
+    private List<Integer> dfsInOrder(Node currentNode, List<Integer> result) {
+        if (currentNode.left != null) {
+            dfsInOrder(currentNode.left, result);
+        }
+
+        result.add(currentNode.value);
+
+        if (currentNode.right != null) {
+            dfsInOrder(currentNode.right, result);
+        }
+
+        return result;
+    }
+
     Node traverse(Node node) {
         var tree = new Node(node.value);
         tree.left = node.left == null ? null : traverse(node.left);
