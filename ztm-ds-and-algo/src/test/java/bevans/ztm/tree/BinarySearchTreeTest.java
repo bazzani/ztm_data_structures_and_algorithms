@@ -15,6 +15,17 @@ class BinarySearchTreeTest {
     @BeforeEach
     public void setup() {
         sut = new BinarySearchTree();
+        addDataToTree();
+    }
+
+    private void addDataToTree() {
+        sut.insert(9);
+        sut.insert(4);
+        sut.insert(6);
+        sut.insert(20);
+        sut.insert(170);
+        sut.insert(15);
+        sut.insert(1);
     }
 
     @Test
@@ -25,13 +36,6 @@ class BinarySearchTreeTest {
         // 1   6     15    170
 
         // when
-        sut.insert(9);
-        sut.insert(4);
-        sut.insert(6);
-        sut.insert(20);
-        sut.insert(170);
-        sut.insert(15);
-        sut.insert(1);
 
         // then
         var tree = sut.traverse(sut.root);
@@ -48,13 +52,6 @@ class BinarySearchTreeTest {
         //        9
         //   4          20
         // 1   6     15    170
-        sut.insert(9);
-        sut.insert(4);
-        sut.insert(6);
-        sut.insert(20);
-        sut.insert(170);
-        sut.insert(15);
-        sut.insert(1);
 
         // when
         var node = sut.lookup(VALUE_TO_LOOKUP);
@@ -70,13 +67,6 @@ class BinarySearchTreeTest {
         //        9
         //   4          20
         // 1   6     15    170
-        sut.insert(9);
-        sut.insert(4);
-        sut.insert(6);
-        sut.insert(20);
-        sut.insert(170);
-        sut.insert(15);
-        sut.insert(1);
 
         // when
         var node = sut.lookup(16);
@@ -104,13 +94,6 @@ class BinarySearchTreeTest {
         //        9
         //   4          20
         // 1   6     15    170
-        sut.insert(9);
-        sut.insert(4);
-        sut.insert(6);
-        sut.insert(20);
-        sut.insert(170);
-        sut.insert(15);
-        sut.insert(1);
 
         // when
         var removed = sut.remove(VALUE_TO_REMOVE);
@@ -130,13 +113,6 @@ class BinarySearchTreeTest {
         //        9
         //   4          20
         // 1   6     15    170
-        sut.insert(9);
-        sut.insert(4);
-        sut.insert(6);
-        sut.insert(20);
-        sut.insert(170);
-        sut.insert(15);
-        sut.insert(1);
 
         // when
         var removed = sut.remove(12);
@@ -151,13 +127,6 @@ class BinarySearchTreeTest {
         //        9
         //   4          20
         // 1   6     15    170
-        sut.insert(9);
-        sut.insert(4);
-        sut.insert(6);
-        sut.insert(20);
-        sut.insert(170);
-        sut.insert(15);
-        sut.insert(1);
 
         // when
         int[] bfsResult = sut.breadthFirstSearch();
@@ -172,13 +141,6 @@ class BinarySearchTreeTest {
         //        9
         //   4          20
         // 1   6     15    170
-        sut.insert(9);
-        sut.insert(4);
-        sut.insert(6);
-        sut.insert(20);
-        sut.insert(170);
-        sut.insert(15);
-        sut.insert(1);
 
         // when
         int[] bfsResult = sut.breadthFirstSearchR();
@@ -193,13 +155,6 @@ class BinarySearchTreeTest {
         //        9
         //   4          20
         // 1   6     15    170
-        sut.insert(9);
-        sut.insert(4);
-        sut.insert(6);
-        sut.insert(20);
-        sut.insert(170);
-        sut.insert(15);
-        sut.insert(1);
 
         // when
         int[] dfsResult = sut.depthFirstSearchInOrder();
@@ -214,13 +169,6 @@ class BinarySearchTreeTest {
         //        9
         //   4          20
         // 1   6     15    170
-        sut.insert(9);
-        sut.insert(4);
-        sut.insert(6);
-        sut.insert(20);
-        sut.insert(170);
-        sut.insert(15);
-        sut.insert(1);
 
         // when
         int[] dfsResult = sut.depthFirstSearchPreOrder();
@@ -236,13 +184,6 @@ class BinarySearchTreeTest {
         //        9
         //   4          20
         // 1   6     15    170
-        sut.insert(9);
-        sut.insert(4);
-        sut.insert(6);
-        sut.insert(20);
-        sut.insert(170);
-        sut.insert(15);
-        sut.insert(1);
 
         // when
         int[] dfsResult = sut.depthFirstSearchPostOrder();
