@@ -212,6 +212,28 @@ public class BinarySearchTree {
         return result;
     }
 
+    int[] depthFirstSearchPreOrder() {
+        var result = new ArrayList<Integer>();
+
+        return dfsPreOrder(root, result)
+                .stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
+    }
+
+    private List<Integer> dfsPreOrder(Node currentNode, List<Integer> result) {
+        result.add(currentNode.value);
+
+        if (currentNode.left != null) {
+            dfsPreOrder(currentNode.left, result);
+        }
+        if (currentNode.right != null) {
+            dfsPreOrder(currentNode.right, result);
+        }
+
+        return result;
+    }
+
     Node traverse(Node node) {
         var tree = new Node(node.value);
         tree.left = node.left == null ? null : traverse(node.left);
