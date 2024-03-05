@@ -156,20 +156,27 @@ public class BinarySearchTree {
             }
         }
 
-        return result.stream().mapToInt(Integer::intValue).toArray();
+        return result
+                .stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
     }
 
     int[] breadthFirstSearchR() {
+        var result = new ArrayList<Integer>();
+
         Queue<Node> queue = new ArrayDeque<>();
         queue.add(root);
-        var result = new ArrayList<Integer>();
 
         return breadthFirstSearchR(queue, result);
     }
 
     private int[] breadthFirstSearchR(Queue<Node> queue, List<Integer> results) {
         if (queue.isEmpty()) {
-            return results.stream().mapToInt(Integer::intValue).toArray();
+            return results
+                    .stream()
+                    .mapToInt(Integer::intValue)
+                    .toArray();
         }
 
         var currentNode = queue.poll();
@@ -208,7 +215,10 @@ public class BinarySearchTree {
     int[] depthFirstSearchPreOrder() {
         var result = new ArrayList<Integer>();
 
-        return dfsPreOrder(root, result).stream().mapToInt(Integer::intValue).toArray();
+        return dfsPreOrder(root, result)
+                .stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
     }
 
     private List<Integer> dfsPreOrder(Node currentNode, List<Integer> result) {
@@ -227,7 +237,9 @@ public class BinarySearchTree {
     int[] depthFirstSearchPostOrder() {
         var result = new ArrayList<Integer>();
 
-        return dfsPostOrder(root, result).stream().mapToInt(Integer::intValue).toArray();
+        return dfsPostOrder(root, result).stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
     }
 
     private List<Integer> dfsPostOrder(Node currentNode, List<Integer> result) {
