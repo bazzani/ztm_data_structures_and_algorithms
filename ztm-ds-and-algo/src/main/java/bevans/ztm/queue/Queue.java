@@ -19,7 +19,7 @@ public class Queue {
         return length == 0;
     }
 
-    public void enqueue(String value) {
+    public void enqueue(Object value) {
         var newNode = new Node(value);
 
         if (length == 0) {

@@ -1,13 +1,12 @@
 package bevans.ztm.tree;
 
 
+import bevans.ztm.queue.Queue;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 public class BinarySearchTree {
     Node root;
@@ -140,19 +139,18 @@ public class BinarySearchTree {
 
     int[] breadthFirstSearch() {
         var result = new ArrayList<Integer>();
-
-        Queue<Node> queue = new ArrayDeque<>();
-        queue.add(root);
+        var queue = new Queue();
+        queue.enqueue(root);
 
         while (!queue.isEmpty()) {
-            var currentNode = queue.poll();
-
+            var currentNode = (Node) queue.dequeue();
             result.add(currentNode.value);
+
             if (currentNode.left != null) {
-                queue.add(currentNode.left);
+                queue.enqueue(currentNode.left);
             }
             if (currentNode.right != null) {
-                queue.add(currentNode.right);
+                queue.enqueue(currentNode.right);
             }
         }
 
@@ -164,14 +162,13 @@ public class BinarySearchTree {
 
     int[] breadthFirstSearchR() {
         var result = new ArrayList<Integer>();
-
-        Queue<Node> queue = new ArrayDeque<>();
-        queue.add(root);
+        var queue = new Queue();
+        queue.enqueue(root);
 
         return breadthFirstSearchR(queue, result);
     }
 
-    private int[] breadthFirstSearchR(Queue<Node> queue, List<Integer> results) {
+    private int[] breadthFirstSearchR(Queue queue, List<Integer> results) {
         if (queue.isEmpty()) {
             return results
                     .stream()
@@ -179,14 +176,14 @@ public class BinarySearchTree {
                     .toArray();
         }
 
-        var currentNode = queue.poll();
+        var currentNode = (Node) queue.dequeue();
         results.add(currentNode.value);
 
         if (currentNode.left != null) {
-            queue.add(currentNode.left);
+            queue.enqueue(currentNode.left);
         }
         if (currentNode.right != null) {
-            queue.add(currentNode.right);
+            queue.enqueue(currentNode.right);
         }
 
         return breadthFirstSearchR(queue, results);
@@ -195,7 +192,10 @@ public class BinarySearchTree {
     int[] depthFirstSearchInOrder() {
         var result = new ArrayList<Integer>();
 
-        return dfsInOrder(root, result).stream().mapToInt(Integer::intValue).toArray();
+        return dfsInOrder(root, result)
+                .stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
     }
 
     private List<Integer> dfsInOrder(Node currentNode, List<Integer> result) {
