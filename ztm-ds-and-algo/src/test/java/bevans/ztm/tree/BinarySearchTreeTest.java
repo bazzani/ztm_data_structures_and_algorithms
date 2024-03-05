@@ -165,4 +165,25 @@ class BinarySearchTreeTest {
         // then
         assertThat(Arrays.toString(bfsResult)).isEqualTo("[9, 4, 20, 1, 6, 15, 170]");
     }
+
+    @Test
+    void shouldPerformBreadthFirstSearchR() {
+        // given
+        //        9
+        //   4          20
+        // 1   6     15    170
+        sut.insert(9);
+        sut.insert(4);
+        sut.insert(6);
+        sut.insert(20);
+        sut.insert(170);
+        sut.insert(15);
+        sut.insert(1);
+
+        // when
+        int[] bfsResult = sut.breadthFirstSearchR();
+
+        // then
+        assertThat(Arrays.toString(bfsResult)).isEqualTo("[9, 4, 20, 1, 6, 15, 170]");
+    }
 }

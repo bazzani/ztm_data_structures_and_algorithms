@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 
 public class BinarySearchTree {
@@ -158,6 +159,34 @@ public class BinarySearchTree {
         return result.stream()
                 .mapToInt(Integer::intValue)
                 .toArray();
+    }
+
+    int[] breadthFirstSearchR() {
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        var result = new ArrayList<Integer>();
+
+        return breadthFirstSearchR(queue, result);
+    }
+
+    private int[] breadthFirstSearchR(Queue<Node> queue, List<Integer> results) {
+        if (queue.isEmpty()) {
+            return results.stream()
+                    .mapToInt(Integer::intValue)
+                    .toArray();
+        }
+
+        var currentNode = queue.poll();
+        results.add(currentNode.value);
+
+        if (currentNode.left != null) {
+            queue.add(currentNode.left);
+        }
+        if (currentNode.right != null) {
+            queue.add(currentNode.right);
+        }
+
+        return breadthFirstSearchR(queue, results);
     }
 
     Node traverse(Node node) {
