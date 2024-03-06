@@ -1,15 +1,27 @@
 package bevans.ztm.algo.recursion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Fibonacci {
+    long iterations = 0;
+
+    private final Map<Integer, Integer> cache = new HashMap<>();
+
     int fibonacciRecursive(int index) {
-        if (index < 2) {
-            return index;
+        iterations++;
+
+        if (!cache.containsKey(index)) {
+            if (index < 2) {
+                cache.put(index, index);
+            } else {
+                cache.put(index, fibonacciRecursive(index - 1) + fibonacciRecursive(index - 2));
+            }
         }
 
-        return fibonacciRecursive(index - 1) + fibonacciRecursive(index - 2);
+        return cache.get(index);
     }
 
     int fibonacciIterative(int index) {
