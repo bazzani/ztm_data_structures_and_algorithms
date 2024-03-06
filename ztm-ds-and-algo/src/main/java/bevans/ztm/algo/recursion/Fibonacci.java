@@ -13,15 +13,16 @@ public class Fibonacci {
     int fibonacciRecursive(int index) {
         iterations++;
 
-        if (!cache.containsKey(index)) {
+        if (cache.containsKey(index)) {
+            return cache.get(index);
+        } else {
             if (index < 2) {
-                cache.put(index, index);
+                return index;
             } else {
                 cache.put(index, fibonacciRecursive(index - 1) + fibonacciRecursive(index - 2));
+                return cache.get(index);
             }
         }
-
-        return cache.get(index);
     }
 
     int fibonacciIterative(int index) {
