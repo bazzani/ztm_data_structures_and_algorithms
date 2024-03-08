@@ -53,7 +53,11 @@ public class DoublyLinkedList {
         var leader = traverseToIndex(index - 1);
         var follower = leader.next.next;
         leader.next = follower;
-        follower.previous = leader;
+
+        if (follower != null) {
+            follower.previous = leader;
+        }
+
         length--;
     }
 
