@@ -14,37 +14,22 @@ public class ZTMArray {
     }
 
     public Object get(int index) {
-        return data.get(index);
+        return null;
     }
 
     public int push(Object item) {
-        data.put(this.length, item);
-        length++;
-
-        return length;
+        return 0;
     }
 
     public Object pop() {
-        var lastItem = data.remove(length - 1);
-        length--;
-
-        return lastItem;
+        return null;
     }
 
     public Object delete(int position) {
-        var item = data.get(position);
-        shiftItems(position);
-
-        return item;
+        return null;
     }
 
     private void shiftItems(int position) {
-        for (int i = position; i < length; i++) {
-            var shiftedItem = data.get(i + 1);
-            data.put(i, shiftedItem);
-        }
-        data.remove(length - 1);
-        length--;
     }
 
     public int length() {
