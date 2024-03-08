@@ -13,6 +13,8 @@ class DoublyLinkedListTest {
 
         // then
         assertThat(sut.length()).isEqualTo(1);
+        assertThat(sut.printList()).isEqualTo("[10]");
+
         System.out.println("sut = " + sut);
     }
 
@@ -27,6 +29,8 @@ class DoublyLinkedListTest {
 
         // then
         assertThat(sut.length()).isEqualTo(3);
+        assertThat(sut.printList()).isEqualTo("[10,5,16]");
+
         System.out.println("sut.printList() = " + sut.printList());
         System.out.println("sut = " + sut);
     }
@@ -41,6 +45,7 @@ class DoublyLinkedListTest {
 
         // then
         assertThat(sut.length()).isEqualTo(2);
+        assertThat(sut.printList()).isEqualTo("[5,10]");
 
         System.out.println("sut = " + sut.printList());
     }
@@ -58,6 +63,7 @@ class DoublyLinkedListTest {
         // then
         assertThat(sut.length()).isEqualTo(4);
         assertThat(sut.printList()).isEqualTo("[10,5,99,16]");
+
         System.out.println("sut = " + sut.printList());
         System.out.println("sut = " + sut);
     }
@@ -73,6 +79,7 @@ class DoublyLinkedListTest {
         // then
         assertThat(sut.length()).isEqualTo(2);
         assertThat(sut.printList()).isEqualTo("[99,10]");
+
         System.out.println("sut = " + sut.printList());
     }
 
@@ -87,6 +94,7 @@ class DoublyLinkedListTest {
         // then
         assertThat(sut.length()).isEqualTo(2);
         assertThat(sut.printList()).isEqualTo("[10,99]");
+
         System.out.println("sut = " + sut.printList());
     }
 
@@ -103,6 +111,7 @@ class DoublyLinkedListTest {
         // then
         assertThat(sut.length()).isEqualTo(2);
         assertThat(sut.printList()).isEqualTo("[10,16]");
+
         System.out.println("sut = " + sut.printList());
     }
 
@@ -118,7 +127,7 @@ class DoublyLinkedListTest {
 
         // then
         assertThat(sut.length()).isEqualTo(2);
-        assertThat(sut.printList()).isEqualTo("[10,16]");
+        assertThat(sut.printList()).isEqualTo("[10,5]");
         System.out.println("sut = " + sut.printList());
     }
 }
