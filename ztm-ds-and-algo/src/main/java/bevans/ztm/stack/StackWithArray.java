@@ -1,6 +1,5 @@
 package bevans.ztm.stack;
 
-import java.util.Arrays;
 import java.util.StringJoiner;
 
 public class StackWithArray {
@@ -12,35 +11,22 @@ public class StackWithArray {
     }
 
     public Object peek() {
-        if (data.length == 0) {
-            return null;
-        } else {
-            return data[data.length - 1];
-        }
+        return null;
     }
 
     public void push(Object value) {
-        data = Arrays.copyOf(data, data.length + 1);
-        data[data.length - 1] = value;
     }
 
     public Object pop() {
-        var popped = data[data.length - 1];
-        data = Arrays.copyOf(data, data.length - 1);
-
-        return popped;
+        return null;
     }
 
     public boolean isEmpty() {
-        return data.length == 0;
+        return true;
     }
 
     public String printStack() {
         var joiner = new StringJoiner(",", "[", "]");
-
-        for (int i = data.length - 1; i >= 0; i--) {
-            joiner.add(data[i].toString());
-        }
 
         return joiner.toString();
     }
