@@ -6,71 +6,27 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import java.util.StringJoiner;
 
 public class DoublyLinkedList {
-    private Node head;
-    private Node tail;
-    private int length;
-
     public DoublyLinkedList(Object value) {
-        this.head = new Node(value, null, null);
-        this.tail = head;
-        this.length = 1;
     }
 
     public int length() {
-        return length;
+        return 0;
     }
 
     public void append(Object value) {
-        var newNode = new Node(value, null, tail);
-        tail.next = newNode;
-        tail = newNode;
-        length++;
     }
 
     public void prepend(Object value) {
-        var newNode = new Node(value, head, null);
-        head = newNode;
-        length++;
     }
 
     public void insert(int index, Object value) {
-        if (index >= length) {
-            append(value);
-        } else if (index == 0) {
-            prepend(value);
-        } else {
-            var leader = traverseToIndex(index - 1);
-            var follower = leader.next;
-
-            var newNode = new Node(value, follower, leader);
-            leader.next = newNode;
-            follower.previous = newNode;
-            length++;
-        }
     }
 
     public void remove(int index) {
-        var leader = traverseToIndex(index - 1);
-        var follower = leader.next.next;
-        leader.next = follower;
-
-        if (follower != null) {
-            follower.previous = leader;
-        }
-
-        length--;
     }
 
     private Node traverseToIndex(int index) {
-        var currentIndex = 0;
-        var currentNode = head;
-
-        while (currentIndex != index) {
-            currentNode = currentNode.next;
-            currentIndex++;
-        }
-
-        return currentNode;
+        return null;
     }
 
     @Override
@@ -80,28 +36,9 @@ public class DoublyLinkedList {
 
     String printList() {
         var joiner = new StringJoiner(",", "[", "]");
-        var currentNode = this.head;
-        while (currentNode != null) {
-            joiner.add(currentNode.value.toString());
-            currentNode = currentNode.next;
-        }
         return joiner.toString();
     }
 
     private static class Node {
-        Object value;
-        Node next;
-        Node previous;
-
-        public Node(Object value, Node next, Node previous) {
-            this.value = value;
-            this.next = next;
-            this.previous = previous;
-        }
-
-        @Override
-        public String toString() {
-            return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).toString();
-        }
     }
 }
