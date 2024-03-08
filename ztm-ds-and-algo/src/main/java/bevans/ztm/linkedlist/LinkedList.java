@@ -58,4 +58,7 @@ public class LinkedList {
 
     public void reverseBarryTwo() {
     }
+
+    private static class Node {
+    }
 }
