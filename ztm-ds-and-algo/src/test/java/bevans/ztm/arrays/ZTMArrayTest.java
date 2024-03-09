@@ -39,6 +39,7 @@ class ZTMArrayTest {
     void shouldPop() {
         sut.push("foo");
         assertThat(sut.pop()).isEqualTo("foo");
+        assertThat(sut.length()).isZero();
     }
 
     @Test
@@ -53,6 +54,8 @@ class ZTMArrayTest {
 
         assertThat(deletedItem).isEqualTo(anObject);
         assertThat(sut.length()).isEqualTo(2);
+
+        assertThat(sut.get(0)).isEqualTo("foo");
         assertThat(sut.get(1)).isEqualTo(2);
     }
 
