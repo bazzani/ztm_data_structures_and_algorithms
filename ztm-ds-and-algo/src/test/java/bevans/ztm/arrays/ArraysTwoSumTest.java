@@ -1,9 +1,13 @@
 package bevans.ztm.arrays;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ArraysTwoSumTest {
 
@@ -14,33 +18,29 @@ class ArraysTwoSumTest {
         sut = new ArraysTwoSum();
     }
 
-    @Test
-    void shouldGetIndices() {
+    @ParameterizedTest
+    @MethodSource("testData")
+    void shouldGetIndices(int[] data, int sum, int[] expected) {
         // given
         // when
-        var result = sut.twoSum(new int[]{2, 7, 11, 15}, 9);
+        var indices = sut.twoSum(data, sum);
 
         // then
-        assertArrayEquals(new int[]{0, 1}, result);
-    }
+        assertThat(indices).isEqualTo(expected);
 
-    @Test
-    void shouldGetIndices2() {
-        // given
         // when
-        var result = sut.twoSum(new int[]{3, 2, 4}, 6);
+        indices = sut.twoSumOnePass(data, sum);
 
         // then
-        assertArrayEquals(new int[]{1, 2}, result);
+        assertThat(indices).isEqualTo(expected);
     }
 
-    @Test
-    void shouldGetIndices3() {
-        // given
-        // when
-        var result = sut.twoSum(new int[]{3, 3}, 6);
-
-        // then
-        assertArrayEquals(new int[]{0, 1}, result);
+    private static Stream<Arguments> testData() {
+        return Stream.of(
+                Arguments.of(new int[]{2, 7, 11, 15}, 9, new int[]{0, 1}),
+                Arguments.of(new int[]{3, 2, 4}, 6, new int[]{1, 2}),
+                Arguments.of(new int[]{3, 3}, 6, new int[]{0, 1})
+        );
     }
+
 }
