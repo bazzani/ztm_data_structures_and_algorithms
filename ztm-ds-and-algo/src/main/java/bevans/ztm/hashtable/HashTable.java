@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class HashTable {
+    // todo implement with Array of LinkedList<HashTable$Entry>
+
     private final Object[][][] data;
 
     HashTable(int size) {
