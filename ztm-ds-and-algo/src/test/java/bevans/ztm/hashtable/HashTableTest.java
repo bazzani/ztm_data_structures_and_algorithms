@@ -26,6 +26,17 @@ class HashTableTest {
     }
 
     @Test
+    void shouldReturnNullForMissingKeyWithCollision() {
+        // given
+        // when
+        sut.set("key1", 1);
+
+        // then
+        var value = sut.get("key33");
+        assertThat(value).isNull();
+    }
+
+    @Test
     void shouldReturnNullForMissingKey() {
         // given
         // when
@@ -67,11 +78,11 @@ class HashTableTest {
         sut.set("Harry", 789);
 
         // when
-        sut.set("Harry", 000);
+        sut.set("Harry", 123);
 
         // then
         var value = sut.get("Harry");
-        assertThat(value).isEqualTo(000);
+        assertThat(value).isEqualTo(123);
     }
 
     @Test
@@ -81,11 +92,22 @@ class HashTableTest {
         sut.set("grapes2", 10_000);
         sut.set("apples", 54);
         sut.set("oranges", 2);
+        sut.set("grapes", 2000000000);
 
         // when
         var keys = sut.keys();
 
         // then
         assertThat(keys).contains("grapes", "grapes2", "apples", "oranges");
+    }
+
+    @Test
+    void shouldGetKeysFromEmptyHashTable() {
+        // given
+        // when
+        var keys = sut.keys();
+
+        // then
+        assertThat(keys).isEmpty();
     }
 }
