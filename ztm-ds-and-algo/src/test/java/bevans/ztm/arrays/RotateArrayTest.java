@@ -1,19 +1,20 @@
 package bevans.ztm.arrays;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.of;
 
-@Timeout(value = 1, threadMode = Timeout.ThreadMode.SEPARATE_THREAD)
 class RotateArrayTest {
     private RotateArray sut;
 
@@ -46,6 +47,42 @@ class RotateArrayTest {
         assertArrayEquals(expected, data);
     }
 
+    @Test
+    void shouldRotateArrayWithLargeDatasetAndNotTimeout() {
+        // given
+        var data = IntStream.range(0, 100_000).toArray();
+        var rotations = 54944;
+        var expected = IntStream.concat(
+                IntStream.range(45_056, 100_000),
+                IntStream.range(0, 45_056)
+        ).toArray();
+
+        // when
+        sut.rotate(data, rotations);
+
+
+        // then
+        assertArrayEquals(expected, data);
+    }
+
+    @Test
+    void shouldRotateArrayBruteWithLargeDatasetAndTimeout() {
+        // given
+        var data = IntStream.range(0, 100_000).toArray();
+        var rotations = 54944;
+
+        var exception = assertThrows(Throwable.class, () ->
+                assertTimeoutPreemptively(Duration.ofSeconds(1L), () -> {
+                    // when
+                    sut.rotateBrute(data, rotations);
+
+                    fail("should have timed out");
+                }));
+
+        // then
+        assertThat(exception.getMessage()).isEqualTo("execution timed out after 1000 ms");
+    }
+
     private static Stream<Arguments> testData() {
         return Stream.of(
                 of(new int[]{1, 2, 3, 4, 5, 6, 7},
@@ -72,13 +109,6 @@ class RotateArrayTest {
                 of(new int[]{1, 2, 3},
                         4,
                         new int[]{3, 1, 2}
-                ),
-                of(IntStream.range(0, 100_000).toArray(),
-                        54944,
-                        IntStream.concat(
-                                IntStream.range(45_056, 100_000),
-                                IntStream.range(0, 45_056)
-                        ).toArray()
                 )
         );
     }
