@@ -27,6 +27,7 @@ class LinkedListTest {
 
         // then
         assertThat(sut.length()).isEqualTo(2);
+        assertThat(sut.printList()).isEqualTo("[10,5]");
         System.out.println("sut = " + sut);
     }
 
@@ -57,7 +58,23 @@ class LinkedListTest {
         // then
         assertThat(sut.length()).isEqualTo(4);
         assertThat(sut.printList()).isEqualTo("[10,5,99,16]");
-        System.out.println("sut = " + sut.printList());
+        printList(sut);
+    }
+
+    @Test
+    void shouldInsertValueAtEnd() {
+        // given
+        var sut = new LinkedList(10);
+        sut.append(5);
+        sut.append(16);
+
+        // when
+        sut.insert(3, 99);
+
+        // then
+        assertThat(sut.length()).isEqualTo(4);
+        assertThat(sut.printList()).isEqualTo("[10,5,16,99]");
+        printList(sut);
     }
 
     @Test
@@ -71,7 +88,7 @@ class LinkedListTest {
         // then
         assertThat(sut.length()).isEqualTo(2);
         assertThat(sut.printList()).isEqualTo("[99,10]");
-        System.out.println("sut = " + sut.printList());
+        printList(sut);
     }
 
     @Test
@@ -85,7 +102,7 @@ class LinkedListTest {
         // then
         assertThat(sut.length()).isEqualTo(2);
         assertThat(sut.printList()).isEqualTo("[10,99]");
-        System.out.println("sut = " + sut.printList());
+        printList(sut);
     }
 
     @Test
@@ -101,8 +118,25 @@ class LinkedListTest {
         // then
         assertThat(sut.length()).isEqualTo(2);
         assertThat(sut.printList()).isEqualTo("[10,16]");
-        System.out.println("sut = " + sut.printList());
+        printList(sut);
     }
+
+    @Test
+    void shouldRemoveFirstValue() {
+        // given
+        var sut = new LinkedList(10);
+        sut.append(5);
+        sut.append(16);
+
+        // when
+        sut.remove(0);
+
+        // then
+        assertThat(sut.length()).isEqualTo(2);
+        assertThat(sut.printList()).isEqualTo("[5,16]");
+        printList(sut);
+    }
+
 
     @Test
     void shouldRemoveLastValue() {
@@ -117,7 +151,23 @@ class LinkedListTest {
         // then
         assertThat(sut.length()).isEqualTo(2);
         assertThat(sut.printList()).isEqualTo("[10,5]");
-        System.out.println("sut = " + sut.printList());
+        printList(sut);
+    }
+
+    @Test
+    void shouldRemoveAllValues() {
+        // given
+        var sut = new LinkedList(10);
+        sut.append(16);
+
+        // when
+        sut.remove(0);
+        sut.remove(0);
+
+        // then
+        assertThat(sut.length()).isZero();
+        assertThat(sut.printList()).isEqualTo("[]");
+        printList(sut);
     }
 
     @Test
@@ -128,11 +178,11 @@ class LinkedListTest {
         sut.append(16);
 
         // when
-        var reversed = sut.reverse();
+        sut.reverse();
 
         // then
-        assertThat(reversed.printList()).isEqualTo("[16,5,10]");
-        System.out.println("reversed.printList() = " + reversed.printList());
+        assertThat(sut.printList()).isEqualTo("[16,5,10]");
+        printList(sut);
     }
 
     @Test
@@ -141,11 +191,11 @@ class LinkedListTest {
         var sut = new LinkedList();
 
         // when
-        var reversed = sut.reverse();
+        sut.reverse();
 
         // then
-        assertThat(reversed.printList()).isEqualTo("[]");
-        System.out.println("reversed.printList() = " + reversed.printList());
+        assertThat(sut.printList()).isEqualTo("[]");
+        printList(sut);
     }
 
     @Test
@@ -154,63 +204,15 @@ class LinkedListTest {
         var sut = new LinkedList(10);
 
         // when
-        var reversed = sut.reverse();
+        sut.reverse();
 
         // then
-        assertThat(reversed.printList()).isEqualTo("[10]");
-        System.out.println("reversed.printList() = " + reversed.printList());
+        assertThat(sut.printList()).isEqualTo("[10]");
+        printList(sut);
     }
 
-    @Test
-    void shouldReverseZtm() {
-        // given
-        var sut = new LinkedList(10);
-        sut.append(5);
-        sut.append(16);
-
-        // when
-        var reversed = sut.reverseZtm();
-
-        // then
-        assertThat(reversed.printList()).isEqualTo("[16,5,10]");
-        System.out.println("reversed.printList() = " + reversed.printList());
-    }
-
-    @Test
-    void shouldReverseBarry() {
-        // given
-        var sut = new LinkedList(10);
-        sut.append(5);
-        sut.append(16);
-        sut.append(8);
-
-        // when
-        sut.reverseBarry();
-
-        // then
-        assertThat(sut.printList()).isEqualTo("[8,16,5,10]");
-        System.out.println("reversed.printList() = " + sut.printList());
-    }
-
-    @Test
-    void shouldReverseBarryTwo() {
-        // given
-        var sut = new LinkedList(10);
-        sut.append(5);
-        sut.append(16);
-        sut.append(8);
-
-        // when
-        sut.reverseBarryTwo();
-
-        // then
-        assertThat(sut.printList()).isEqualTo("[8,16,5,10]");
-        System.out.println("reversed.printList() = " + sut.printList());
-
-        sut.reverseBarryTwo();
-        assertThat(sut.printList()).isEqualTo("[10,5,16,8]");
-
-        sut.reverseBarryTwo();
-        assertThat(sut.printList()).isEqualTo("[8,16,5,10]");
+    private void printList(LinkedList sut) {
+        System.out.println("sut = " + sut.printList());
+        System.out.println("sut = " + sut);
     }
 }
