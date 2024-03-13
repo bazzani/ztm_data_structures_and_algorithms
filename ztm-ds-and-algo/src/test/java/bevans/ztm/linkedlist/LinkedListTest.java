@@ -14,7 +14,7 @@ class LinkedListTest {
 
         // then
         assertThat(sut.length()).isEqualTo(1);
-        System.out.println("sut = " + sut);
+        printList(sut);
     }
 
     @Test
@@ -28,7 +28,7 @@ class LinkedListTest {
         // then
         assertThat(sut.length()).isEqualTo(2);
         assertThat(sut.printList()).isEqualTo("[10,5]");
-        System.out.println("sut = " + sut);
+        printList(sut);
     }
 
     @Test
@@ -41,8 +41,7 @@ class LinkedListTest {
 
         // then
         assertThat(sut.length()).isEqualTo(2);
-
-        System.out.println("sut = " + sut.printList());
+        printList(sut);
     }
 
     @Test
