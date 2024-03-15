@@ -15,6 +15,28 @@ class QueueWithStacksTest {
     }
 
     @Test
+    void shouldFindEmptyQueue() {
+        // given
+        // when
+        var empty = sut.isEmpty();
+
+        // then
+        assertThat(empty).isTrue();
+    }
+
+    @Test
+    void shouldFindNonEmptyQueue() {
+        // given
+        sut.enqueue("Bob");
+
+        // when
+        var empty = sut.isEmpty();
+
+        // then
+        assertThat(empty).isFalse();
+    }
+
+    @Test
     void shouldPeek() {
         // given
         sut.enqueue("Joy");
@@ -26,6 +48,28 @@ class QueueWithStacksTest {
         // then
         assertThat(peeked).isEqualTo("Joy");
         System.out.println("sut = " + sut.printQueue());
+        System.out.println("sut = " + sut);
+    }
+
+    @Test
+    void shouldPeekAfterDeque() {
+        // given
+        sut.enqueue("Joy");
+        sut.enqueue("Barry");
+        sut.dequeue();
+        sut.dequeue();
+        sut.enqueue("Sammy");
+        sut.enqueue("Sammy2");
+        sut.dequeue();
+        sut.enqueue("Sammy3");
+
+        // when
+        var peeked = sut.peek();
+
+        // then
+        System.out.println("sut = " + sut.printQueue());
+        System.out.println("sut = " + sut);
+        assertThat(peeked).isEqualTo("Sammy2");
     }
 
     @Test
@@ -37,6 +81,7 @@ class QueueWithStacksTest {
         // then
         assertThat(peeked).isNull();
         System.out.println("sut = " + sut.printQueue());
+        System.out.println("sut = " + sut);
     }
 
     @Test
@@ -50,6 +95,7 @@ class QueueWithStacksTest {
         assertThat(sut.isEmpty()).isFalse();
 //        assertThat(sut.printQueue()).isEqualTo("[Joy,Sam]");
         System.out.println("sut = " + sut.printQueue());
+        System.out.println("sut = " + sut);
     }
 
     @Test
@@ -64,6 +110,7 @@ class QueueWithStacksTest {
         // then
         assertThat(dequeued).isEqualTo("Joy");
         System.out.println("sut = " + sut.printQueue());
+        System.out.println("sut = " + sut);
     }
 
     @Test
