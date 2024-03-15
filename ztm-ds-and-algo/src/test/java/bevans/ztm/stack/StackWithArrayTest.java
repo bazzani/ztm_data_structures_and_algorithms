@@ -85,4 +85,19 @@ class StackWithArrayTest {
         assertThat(sut.isEmpty()).isTrue();
         System.out.println("stack = " + sut.printStack());
     }
+
+    @Test
+    void shouldPopAfterEmpty() {
+        // given
+        sut.push("ZTM.com");
+        sut.pop();
+
+        // when
+        var popped = sut.pop();
+
+        // then
+        assertThat(popped).isNull();
+        assertThat(sut.isEmpty()).isTrue();
+        System.out.println("stack = " + sut.printStack());
+    }
 }
