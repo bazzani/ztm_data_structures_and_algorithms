@@ -80,4 +80,25 @@ class QueueTest {
         assertThat(sut.isEmpty()).isTrue();
         System.out.println("sut = " + sut.printQueue());
     }
+
+    @Test
+    void shouldPeekAfterDeque() {
+        // given
+        sut.enqueue("Joy");
+        sut.enqueue("Barry");
+        sut.dequeue();
+        sut.dequeue();
+        sut.enqueue("Sammy");
+        sut.enqueue("Sammy2");
+        sut.dequeue();
+        sut.enqueue("Sammy3");
+
+        // when
+        var peeked = sut.peek();
+
+        // then
+        System.out.println("sut = " + sut.printQueue());
+        System.out.println("sut = " + sut);
+        assertThat(peeked).isEqualTo("Sammy2");
+    }
 }
