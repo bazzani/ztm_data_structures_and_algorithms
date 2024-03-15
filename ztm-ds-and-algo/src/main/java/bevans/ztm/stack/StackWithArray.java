@@ -1,32 +1,46 @@
 package bevans.ztm.stack;
 
+import java.util.ArrayList;
 import java.util.StringJoiner;
 
 public class StackWithArray {
 
-    Object[] data;
+    ArrayList<Object> data;
 
     public StackWithArray() {
-        this.data = new Object[]{};
+        this.data = new ArrayList<>();
     }
 
     public Object peek() {
-        return null;
+        if (data.isEmpty()) {
+            return null;
+        } else {
+            return data.get(data.size() - 1);
+        }
     }
 
     public void push(Object value) {
+        data.add(value);
     }
 
     public Object pop() {
-        return null;
+        if (data.isEmpty()) {
+            return null;
+        } else {
+            return data.remove(data.size() - 1);
+        }
     }
 
     public boolean isEmpty() {
-        return true;
+        return data.isEmpty();
     }
 
     public String printStack() {
         var joiner = new StringJoiner(",", "[", "]");
+
+        for (var value : data) {
+            joiner.add(value.toString());
+        }
 
         return joiner.toString();
     }
