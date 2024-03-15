@@ -48,7 +48,7 @@ class QueueTest {
 
         // then
         assertThat(sut.isEmpty()).isFalse();
-//        assertThat(sut.printQueue()).isEqualTo("[Joy,Sam]");
+        assertThat(sut.printQueue()).isEqualTo("[Joy,Sam]");
         System.out.println("sut = " + sut.printQueue());
     }
 
