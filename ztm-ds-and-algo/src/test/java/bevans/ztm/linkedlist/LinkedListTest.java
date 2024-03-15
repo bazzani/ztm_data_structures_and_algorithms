@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LinkedListTest {
-
     @Test
     void shouldCreateWithOneValue() {
         // given
@@ -14,6 +13,7 @@ class LinkedListTest {
 
         // then
         assertThat(sut.length()).isEqualTo(1);
+        assertThat(sut.printList()).isEqualTo("[10]");
         printList(sut);
     }
 
@@ -41,6 +41,7 @@ class LinkedListTest {
 
         // then
         assertThat(sut.length()).isEqualTo(2);
+        assertThat(sut.printList()).isEqualTo("[5,10]");
         printList(sut);
     }
 
