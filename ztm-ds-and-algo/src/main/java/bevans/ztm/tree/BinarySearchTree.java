@@ -15,9 +15,44 @@ public class BinarySearchTree {
     }
 
     void insert(int value) {
+        var newNode = new Node(value);
+        if (root == null) {
+            root = newNode;
+        } else {
+            var currentNode = root;
+            while (true) {
+                if (value < currentNode.value) {
+                    if (currentNode.left == null) {
+                        currentNode.left = newNode;
+                        return;
+                    } else {
+                        currentNode = currentNode.left;
+                    }
+                } else {
+                    if (currentNode.right == null) {
+                        currentNode.right = newNode;
+                        return;
+                    } else {
+                        currentNode = currentNode.right;
+                    }
+                }
+            }
+        }
     }
 
     Node lookup(int value) {
+        var currentNode = root;
+
+        while (currentNode != null) {
+            if (value == currentNode.value) {
+                return currentNode;
+            } else if (value < currentNode.value) {
+                currentNode = currentNode.left;
+            } else {
+                currentNode = currentNode.right;
+            }
+        }
+
         return null;
     }
 
