@@ -57,6 +57,85 @@ public class BinarySearchTree {
     }
 
     Node remove(int value) {
+        if (root == null) {
+            return null;
+        }
+
+        var currentNode = root;
+        Node parentNode = null;
+
+        while (currentNode != null) {
+            if (value < currentNode.value) {
+                parentNode = currentNode;
+                currentNode = currentNode.left;
+            } else if (value > currentNode.value) {
+                parentNode = currentNode;
+                currentNode = currentNode.right;
+            } else if (value == currentNode.value) {
+                // we have a match, get to work
+
+                if (currentNode.right == null) {
+                    // Option 1: No right child
+                    if (parentNode == null) {
+                        root = currentNode.left;
+                    } else {
+                        if (parentNode.value > currentNode.value) {
+                            // if parent > current value, make left child a left child of parent
+                            parentNode.left = currentNode.left;
+                        } else if (parentNode.value < currentNode.value) {
+                            // if parent < current value, make left child a right child of parent
+                            parentNode.right = currentNode.left;
+                        }
+                    }
+                    return currentNode;
+
+                } else if (currentNode.right.left == null) {
+                    // Option 2: Right child which doesn't have a left child
+                    currentNode.right.left = currentNode.left;
+                    if (parentNode == null) {
+                        root = currentNode.right;
+                    } else {
+                        if (parentNode.value > currentNode.value) {
+                            // if parent > current, make right child a left child of the parent
+                            parentNode.left = currentNode.right;
+                        } else if (parentNode.value < currentNode.value) {
+                            // if parent < current, make right child a right child of the parent
+                            parentNode.right = currentNode.right;
+                        }
+                    }
+                    return currentNode;
+
+                } else {
+                    // Option 3: Right child that has a left child
+
+                    // find the Right child's left most child
+                    var leftmost = currentNode.right.left;
+                    var leftmostParent = currentNode.right;
+
+                    while (leftmost.left != null) {
+                        leftmostParent = leftmost;
+                        leftmost = leftmost.left;
+                    }
+
+                    // Parent's left subtree is now leftmost's right subtree
+                    leftmostParent.left = leftmost.right;
+                    leftmost.left = currentNode.left;
+                    leftmost.right = currentNode.right;
+
+                    if (parentNode == null) {
+                        root = leftmost;
+                    } else {
+                        if (currentNode.value < parentNode.value) {
+                            parentNode.left = leftmost;
+                        } else if (currentNode.value > parentNode.value) {
+                            parentNode.right = leftmost;
+                        }
+                    }
+
+                    return currentNode;
+                }
+            }
+        }
 
         return null;
     }
