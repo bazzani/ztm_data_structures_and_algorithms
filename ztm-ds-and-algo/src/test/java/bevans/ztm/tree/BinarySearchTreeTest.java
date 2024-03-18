@@ -79,6 +79,8 @@ class BinarySearchTreeTest {
     @Test
     void shouldLookupAndNotFindNodeInEmptyTree() {
         // given
+        sut = new BinarySearchTree();
+
         // when
         var node = sut.lookup(5);
 
@@ -87,7 +89,36 @@ class BinarySearchTreeTest {
     }
 
     @Test
-    void shouldRemove() {
+    void shouldRemove_1_NoRightChild() {
+        // Option 1: No right child
+        //  if parent > current value, make left child a left child of parent
+        //  if parent < current value, make left child a right child of parent
+
+        // given
+        final int VALUE_TO_REMOVE = 170;
+
+        //        9
+        //   4          20
+        // 1   6     15    170
+
+        // when
+        var removed = sut.remove(VALUE_TO_REMOVE);
+
+        // then
+        assertThat(removed.value).isEqualTo(VALUE_TO_REMOVE);
+
+        var tree = sut.traverse(sut.root);
+        var treeJson = ReflectionToStringBuilder.reflectionToString(tree, ToStringStyle.JSON_STYLE);
+        System.out.println(treeJson);
+        assertThat(treeJson).isEqualTo("{\"left\":{\"left\":{\"value\":1},\"right\":{\"value\":6},\"value\":4},\"right\":{\"left\":{\"value\":15},\"value\":20},\"value\":9}");
+    }
+
+    @Test
+    void shouldRemove_2_RightChildWhichDoesNotHaveALeftChild() {
+        // Option 2: Right child which doesn't have a left child
+        //  if parent > current, make right child a left child of the parent
+        //  if parent < current, make right child a right child of the parent
+
         // given
         final int VALUE_TO_REMOVE = 20;
 
@@ -105,6 +136,29 @@ class BinarySearchTreeTest {
         var treeJson = ReflectionToStringBuilder.reflectionToString(tree, ToStringStyle.JSON_STYLE);
         System.out.println(treeJson);
         assertThat(treeJson).isEqualTo("{\"left\":{\"left\":{\"value\":1},\"right\":{\"value\":6},\"value\":4},\"right\":{\"left\":{\"value\":15},\"value\":170},\"value\":9}");
+    }
+
+    @Test
+    void shouldRemove_3_RightChildThatHasALeftChild() {
+        // Option 3: Right child that has a left child
+
+        // given
+        final int VALUE_TO_REMOVE = 9;
+
+        //        9
+        //   4          20
+        // 1   6     15    170
+
+        // when
+        var removed = sut.remove(VALUE_TO_REMOVE);
+
+        // then
+        assertThat(removed.value).isEqualTo(VALUE_TO_REMOVE);
+
+        var tree = sut.traverse(sut.root);
+        var treeJson = ReflectionToStringBuilder.reflectionToString(tree, ToStringStyle.JSON_STYLE);
+        System.out.println(treeJson);
+        assertThat(treeJson).isEqualTo("{\"left\":{\"left\":{\"value\":1},\"right\":{\"value\":6},\"value\":4},\"right\":{\"right\":{\"value\":170},\"value\":20},\"value\":15}");
     }
 
     @Test
